@@ -1,3 +1,28 @@
-@import 'tailwindcss/base';
+/* In your CSS */
+:root {
+  --color-primary: #765899;
+  --color-secondary: #ecc94b;
+  --color-info: #5c6ac4;
+  --color-success: #ecc94b;
+  --color-warning: #5c6ac4;
+  --color-error: #ecc94b;
+  /* ... */
+}
+@tailwind  base;
+@tailwind  components;
+
+.card{
+    @apply border rounded border-gray-400 relative flex flex-col;
+    & .card-header{
+        @apply bg-gray-300 px-5 py-3 border-b border-gray-400 uppercase text-base font-bold text-gray-700;
+    }
+    & .card-body{
+        @apply p-5;
+    }
+}
+@tailwind  utilities;
+/* @import 'tailwindcss/base';
 @import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss/utilities'; */
+
+

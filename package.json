@@ -11,15 +11,18 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
+    "@mdi/js": "^4.7.95",
     "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
-    "@nuxtjs/dotenv": "^1.4.0"
+    "nuxt": "^2.0.0"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^1.0.0",
+    "@tailwindcss/custom-forms": "^0.2.1",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
-    "prettier": "^1.16.4"
+    "prettier": "^1.16.4",
+    "vue-masonry-css": "^1.0.3"
   }
 }
