@@ -1,12 +1,13 @@
 <template>
   <div class="container mx-auto flex shadow-xl">
     <main class="flex-auto p-4 mr-3 bg-white">
+      <form @submit.prevent="submitAdvert" >
       <div class="card">
         <h2 class="card-header">Seleccione Genero</h2>
         <div id="form-content" class="px-4 py-3">
           <label for="category" class="block">Genero:</label>
           <div id="radio-group" class="btn-group">
-            <input type="radio" name="sexo" id="hombre" />
+            <input type="radio" value="1" id="hombre" v-model="category" />
             <label for="hombre" class>
               <svg
                 viewBox="0 0 24 24"
@@ -17,7 +18,7 @@
               <!-- <img src="https://picsum.photos/64/64?image=78" /> -->
             </label>
 
-            <input type="radio" class name="sexo" id="mujer" />
+            <input type="radio" v-model="category" value="2" id="mujer" />
             <label for="mujer" class>
               <!-- iCon by oNlineWebFonts.Com -->
               <svg
@@ -28,7 +29,7 @@
               </svg>
             </label>
 
-            <input type="radio" name="sexo" id="alien" />
+            <input type="radio" value="3" id="alien" v-model="category" />
             <label for="alien" class="center">
               <svg
                 viewBox="0 0 24 24"
@@ -55,7 +56,7 @@
             <span class="text-gray-700 font-medium">Titulo del Anuncio</span>
             <input
               class="form-input mt-1 block w-full"
-              placeholder="Jane Doe"
+              placeholder="Jane Doe" v-model="title" name="title"
             />
           </label>
           <label class="block mt-4">
@@ -65,7 +66,7 @@
             <textarea
               class="form-textarea mt-1 block w-full"
               rows="5"
-              placeholder="Enter some long form content."
+              placeholder="Enter some long form content." v-model="content" name="content"
             ></textarea>
           </label>
           <div class="mt-4">
@@ -114,29 +115,70 @@
       <div class="card mt-2">
         <h2 class="card-header">Imagenes</h2>
         <div class="card-body">
-          <image-upload />
+          <image-upload @getimages="imagesGet"/>
         </div>
       </div>
+      <button type="submit" value="submit" class="btn btn-blue">Enviar</button>
+      </form>
     </main>
     <aside class="md:w-1/3 lg:w-4/12">adverts</aside>
   </div>
 </template>
 
 <script>
-  import { mdiGenderMale, mdiAlienOutline, mdiWhatsapp } from '@mdi/js'
-  import ImageUpload from '~/components/ImageUpload.vue'
-  export default {
-    components: {
-      ImageUpload
+import { mdiGenderMale, mdiAlienOutline, mdiWhatsapp } from '@mdi/js'
+import ImageUpload from '~/components/ImageUpload.vue'
+export default {
+  layout: 'wide',
+  name: 'Adfree',
+  components: {
+    ImageUpload
+  },
+  data() {
+    return {
+      mdiGenderMale,
+      mdiAlienOutline,
+      mdiWhatsapp,
+
+      title: 'Zard I love U',
+      content: 'Lorem Ipsum',
+      category: '1',
+      images: []
+    }
+  },
+  methods: {
+    imagesGet(e) {
+      this.images.push(e)
     },
-    data() {
-      return {
-        mdiGenderMale,
-        mdiAlienOutline,
-        mdiWhatsapp
-      }
+    submitAdvert(e) {
+      const data = new FormData()
+      data.append('title', this.title)
+      data.append('content', this.content)
+      data.append('category', this.category)
+
+      //data.append("images", this.images);
+
+      Array.from(this.images).forEach((file, idx) => {
+        console.log(idx)
+        data.append('image_' + idx, file)
+      })
+      //console.log(data);
+      this.$axios
+        .post('adverts/', data, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization: 'Basic ZGF2aWQ6c2VhbGlsZXIz'
+          }
+        })
+        .then(response => {
+          console.log(response.data)
+        })
+        .catch(error => {
+          console.log('Authentication :' + error)
+        })
     }
   }
+}
 </script>
 
 <style lang="postcss">

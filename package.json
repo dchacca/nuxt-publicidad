@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@mdi/js": "^4.7.95",
+    "@nuxtjs/auth": "^4.8.5",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",

@@ -8,21 +8,22 @@
   --color-error: #ecc94b;
   /* ... */
 }
-@tailwind  base;
-@tailwind  components;
+@tailwind base;
+@tailwind components;
 
-.card{
-    @apply border rounded border-gray-400 relative flex flex-col;
-    & .card-header{
-        @apply bg-gray-300 px-5 py-3 border-b border-gray-400 uppercase text-base font-bold text-gray-700;
-    }
-    & .card-body{
-        @apply p-5;
-    }
+.card {
+  @apply border rounded border-gray-400 relative flex flex-col;
+  & .card-header {
+    @apply bg-gray-300 px-5 py-3 border-b border-gray-400 uppercase text-base font-bold text-gray-700;
+  }
+  & .card-body {
+    @apply p-5;
+  }
 }
-@tailwind  utilities;
+.btn {
+  @apply border rounded py-1  px-2;
+}
+@tailwind utilities;
 /* @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities'; */
-
-

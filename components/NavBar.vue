@@ -28,7 +28,10 @@
         <a href="#" class="inline-block py-2 px-3 hover:text-secondary-500 no-underline">FAQs</a>
       </li>
       <li class="pl-2 border-l border-primary-300 hidden md:block">
-        <a href="#" class="inline-block py-2 px-3 hover:text-secondary-500 no-underline">Entrar</a>
+        <a href="#" class="inline-block py-2 px-3 hover:text-secondary-500 no-underline">Sign Up</a>
+      </li>
+      <li class="pl-2 border-l border-primary-300 hidden md:block">
+        <nuxt-link to="/signup" class="inline-block py-2 px-3 hover:text-secondary-500 no-underline">Registrarse</nuxt-link>
       </li>
       <nuxt-link
         to="/anuncios/publica-gratis"

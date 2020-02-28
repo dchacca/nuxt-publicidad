@@ -78,26 +78,32 @@
 <script>
 import { mdiCloseCircle,mdiClose,mdiCloudUpload } from "@mdi/js";
   export default {
+    props:['value'],
     data() {
       return {
         selectedFile: null,
         imageFiles:[],
         mdiCloseCircle,
         mdiClose,
-        mdiCloudUpload
+        mdiCloudUpload,
+        content: this.value
       }
     },
     methods: {
+      
       onRemove(idx){
        /*  console.log(idx)
         this.imageFiles.splice(idx,1) */
         this.$delete(this.imageFiles,idx)
       },
       onFileSelected(e) {
+       
+       
         let images = e.target.files
+
         //console.log(images)
         Array.from(images).forEach(file=>{
-        console.log(file)
+         this.$emit('getimages',file)
         let reader = new FileReader()
                 reader.readAsDataURL(file)
                 reader.onload = e => {
@@ -108,8 +114,8 @@ import { mdiCloseCircle,mdiClose,mdiCloudUpload } from "@mdi/js";
         })
         
           
-       
-        //let image = e.target.files[0]
+       this.$emit('change',this.imageFiles)
+        
         
       }
     }
